@@ -21,7 +21,6 @@
     create: yes  
 
 
-
 - name: "mount share"
   mount:
    state: "mounted"
@@ -29,3 +28,4 @@
    name: /fileserverdata
    src: "//elasticsearch.c.gcslabs-pso-xsoar.internal/fileserverdata"
    opts: "credentials=/root/.smb_passwords,file_mode=0644,dir_mode=0755,gid=root,uid=root"
+  become: true

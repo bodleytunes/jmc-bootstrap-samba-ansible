@@ -1,0 +1,23 @@
+- name: creatsmbpasswords file
+  file:
+    path: /root/.smb_passwords
+    state: touch
+    mode: 0600
+    owner: root
+    group: root
+
+- name: Add a line to a file if the file does not exist
+  ansible.builtin.lineinfile:
+    path: /root/.smb_passwords
+    line: |
+      username=xsoar
+      password=xsoar123
+    create: yes  
+
+- name: "mount share"
+    mount:
+     state: "mounted"
+     fstype: "cifs"
+     name: /fileserverdata
+     src: "//elasticsearch.c.gcslabs-pso-xsoar.internal/fileserverdata"
+     opts: "credentials=/root/.smb_passwords,file_mode=0644,dir_mode=0755,gid=root,uid=root"

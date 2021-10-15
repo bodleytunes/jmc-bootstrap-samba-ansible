@@ -2,9 +2,11 @@
   user:
     name: "xsoar"
     shell: /bin/bash
-    password: "{{ xsoar123 | password_hash('sha512') }}"
+    password: "{{ mypassword | password_hash('sha512') }}"
     groups: sudo
-  no_log: true
+  no_log: false
+  vars:
+    mypassword: "xsoar123"
 
 
 - name: Install required packages

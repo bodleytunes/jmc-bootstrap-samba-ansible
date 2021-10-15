@@ -1,0 +1,40 @@
+- name: Add Users
+  user:
+    name: "xsoar"
+    shell: /bin/bash
+    password: "{{ xsoar123 | password_hash('sha512') }}"
+    groups: sudo
+  no_log: true
+
+
+- name: Install required packages
+  apt:
+    update_cache: true
+    pkg:
+    - python3-pip
+    - cifs-utils
+    - samba
+
+- name: Create directories
+  file:
+    path: /fileserverdata
+    state: directory
+    mode: 0755
+
+- name: Create samba smbd file
+  template:
+    src: samba.conf.j2
+    dest: /etc/samba/smb.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart smbd
+
+
+- name: create smbuser
+  ansible.builtin.expect:
+    command: smbpasswd -a xsoar
+    responses:
+      (?i)SMB password: "xsoar123" 
+  no_log: true
+  ignore_errors: true

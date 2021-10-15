@@ -9,11 +9,22 @@
 - name: Add a line to a file if the file does not exist
   ansible.builtin.lineinfile:
     path: /root/.smb_passwords
+    regexp: '^username='
     line: |
       username=xsoar
+    create: yes  
+    check_mode: yes
+
+- name: Add a line to a file if the file does not exist
+  ansible.builtin.lineinfile:
+    path: /root/.smb_passwords
+    regexp: '^password='
+    line: |
       password=xsoar123
     create: yes  
     check_mode: yes
+
+
 
 - name: "mount share"
   mount:

@@ -5,3 +5,7 @@
   tasks:
     - import_role:
         name: fileserver
+      tags: [fileserver]
+    - import_role:
+        name: mountfolders
+      tags: [mountfolders]

@@ -1,0 +1,23 @@
+- hosts: all
+  connection: local
+  hosts: localhost
+  no_log: false
+  tasks:
+    - import_role:
+        name: jumphost/client
+      tags: [client]
+    - import_role:
+        name: jumphost/common
+      tags: [common]
+    - import_role:
+        name: jumphost/dns
+      tags: [dns]
+    - import_role:
+        name: jumphost/local
+      tags: [local]
+    - import_role:
+        name: jumphost/ssh_tunneling
+      tags: [ssh_tunneling]
+    - import_role:
+        name: jumphost/wireguard
+      tags: [wireguard]

@@ -4,9 +4,6 @@
   no_log: false
   tasks:
     - import_role:
-        name: jumphost/client
-      tags: [client]
-    - import_role:
         name: jumphost/common
       tags: [common]
     - import_role:

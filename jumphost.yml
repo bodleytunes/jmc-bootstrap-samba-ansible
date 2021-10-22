@@ -2,6 +2,17 @@
   connection: local
   hosts: localhost
   no_log: false
+  vars:
+    algo_provider: local
+    server_name: algo
+    algo_server_name: algo
+    IP_subject_alt_name: wizznet    
+    ansible_ssh_port: 22 
+    algo_ondemand_cellular: false
+    algo_ondemand_wifi: false
+    algo_store_pki: false
+  vars_files:
+    - config.cfg  
   tasks:
     - import_role:
         name: jumphost/common

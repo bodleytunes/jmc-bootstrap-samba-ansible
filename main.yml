@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
   become: false
+  connection: local  
   tasks:
     - name: Playbook dir stat
       stat:

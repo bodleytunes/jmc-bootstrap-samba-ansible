@@ -3,6 +3,8 @@
   hosts: localhost
   no_log: false
   vars:
+    server: localhost
+    endpoint: 23.88.32.56
     algo_provider: local
     server_name: algo
     algo_server_name: algo

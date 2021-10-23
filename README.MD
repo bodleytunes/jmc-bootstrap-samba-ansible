@@ -10,3 +10,7 @@ delete stuff:
 
 `rm -rf ./configs`
 `rm -rf /etc/wireguard`
+
+recreate wireguard dir otherwise touch error
+
+`mkdir -p /etc/wireguard`
